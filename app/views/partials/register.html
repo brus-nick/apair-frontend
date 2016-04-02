@@ -1,0 +1,31 @@
+<form style="padding-top: 20px;" class="col-sm-6">
+    <div class="form-group">
+        <label>Имя</label>
+        <input type="name" class="form-control" data-bind="name" placeholder="Имя" oninput="registerService.registerValidation(this)">
+    </div>
+    <div class="form-group">
+        <label>Фамилия</label>
+        <input type="surname" class="form-control" data-bind="surname" placeholder="Фамилия" oninput="registerService.registerValidation(this)">
+    </div>
+    <div class="form-group">
+        <label>Отчество</label>
+        <input type="patronymic" class="form-control" data-bind="patronymic" placeholder="Отчество" oninput="registerService.registerValidation(this)">
+    </div>
+    <div class="form-group">
+        <label>Номер телефона</label>
+        <input type="phone" class="form-control" data-bind="phone" placeholder="8(***)*******" oninput="registerService.registerValidation(this)">
+    </div>
+    <div class="form-group">
+        <label>Email адрес</label>
+        <input type="email" class="form-control" data-bind="email" placeholder="Email" oninput="registerService.registerValidation(this)">
+    </div>
+    <div class="form-group">
+        <label>Login</label>
+        <input class="form-control" data-bind="login" placeholder="Login" onchange="registerService.registerValidation(this)">
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input class="form-control" data-bind="pass" placeholder="Password" onchange="registerService.registerValidation(this)">
+    </div>
+    <button type="button" class="btn btn-default" onclick="AuthFactory().actions.register()">Зарегистрироваться</button>
+</form> <!-- registration -->

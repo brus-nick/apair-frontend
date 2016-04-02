@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <title>Bee-Signal</title>
+    <link href="./bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="css/starter-template.css" rel="stylesheet">
+    <link href="css/mybtn1.css" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Bee-Signal</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Главная</a></li>
+                <li><a href="#about">Поддержка</a></li>
+                <li>
+                    <div class="btn-group">
+                        <button type="button" class="dropdown-toggle navbar-link navbar-inverse" data-toggle="dropdown" style="border: 0; padding: 15px;">
+                            Навигация
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <button type="button" data-toggle="modal" data-target="#modal1">Авторизация</button>
+                            </li>
+                            <li><a href="#persArea">Личный кабинет</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right ifAuth">
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="modal fade" id="modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Авторизация</h4>
+            </div> <!--modal-header-->
+            <div class="model-body" style="padding-top: 20px;">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-2 control-label">Login</label>
+                        <div class="col-sm-9 col-xs-9">
+                            <input type="login" class="form-control" data-bind="login" placeholder="Login" onchange="authUserService.authValidation(this)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-2 control-label">Password</label>
+                        <div class="col-sm-9 col-xs-9">
+                            <input type="password" class="form-control" data-bind="pass" placeholder="Password" onchange="authUserService.authValidation(this)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10 col-xs-offset-2 col-xs-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Запомнить
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-offset-2 col-sm-2 col-xs-offset-2 col-xs-2">
+                            <button type="button" class="btn btn-default" onclick="AuthFactory().actions.auth()">Войти</button>
+                        </div>
+                        <div class="col-sm-2 col-sm-offset-2 col-xs-2 col-xs-offset-2">
+                            <button type="button" class="btn btn-default" onclick="routes().go('#register')" data-dismiss="modal">Зарегистрироваться</button>
+                        </div>
+                    </div>
+                </form>
+            </div> <!--modal-body-->
+            <div class="modal-footer">
+            </div> <!--modal-footer-->
+        </div>
+    </div>
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="modalChangePass">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Изменить пароль</h4>
+            </div> <!--modal-header-->
+            <div class="model-body" style="padding-top: 20px;">
+                <form class="form-horizontal" style="margin-left: 10px;">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-2 control-label" style="padding-top: 0px;">Новый пароль</label>
+                        <div class="col-sm-9 col-xs-9">
+                            <input type="password" class="form-control" placeholder="Password" data-bind="newPass" onchange="authService.passValidation(this)" style="margin-left: 30px;">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-xs-2 control-label" style="padding-top: 0px;">Введите новый пароль еще раз</label>
+                        <div class="col-sm-9 col-xs-9">
+                            <input type="password" class="form-control" placeholder="Password" data-bind="newPass2" onchange="authService.passValidation(this)" style="margin-left: 30px;">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div  class="col-sm-offset-5 col-sm-2 col-xs-offset-5 col-xs-2">
+                            <button type="button" class="btn btn-default" onclick="AuthFactory().actions.changePass()">Изменить</button>
+                        </div>
+                    </div>
+                </form>
+            </div> <!--modal-body-->
+            <div class="modal-footer">
+            </div> <!--modal-footer-->
+        </div>
+    </div>
+</div>
+<!-- /.modalChangePass -->
+<div id="view"></div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="js/EntryPoint.js"></script>
+<script src="js/routes.js"></script>
+<script src="js/Apiar.js"></script>
+<script src="js/Hives.js"></script>
+<script src="js/Auth.js"></script>
+<script src="js/models/AuthModel.js"></script>
+<script src="js/services/AuthService.js"></script>
+<script src="js/models/RegisterModel.js"></script>
+<script src="js/services/RegisterService.js"></script>
+<script src="js/models/ChangePassModel.js"></script>
+<script src="js/services/ChangePassService.js"></script>
+<script src="js/models/AddAppModel.js"></script>
+<script src="js/services/AddAppService.js"></script>
+<script src="js/models/AddHivesModel.js"></script>
+<script src="js/services/AddHivesService.js"></script>
+<script src="js/models/ChangeAppModel.js"></script>
+<script src="js/services/ChangeAppService.js"></script>
+<script src="js/models/DelAppModel.js"></script>
+<script src="js/services/DelAppService.js"></script>
+<script src="js/models/DelHivesModel.js"></script>
+<script src="js/services/DelHivesService.js"></script>
+<script src="js/models/GetHivesModel.js"></script>
+<script src="js/services/GetHivesService.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+</body>
+</html>
