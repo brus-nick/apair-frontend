@@ -1,6 +1,5 @@
 var routes = function(){
 
-    console.log("route: " + window.location.hash);
     var items = {
         '#home' : 'home.html',
         '#persArea' : 'persArea.html',
