@@ -13,16 +13,37 @@ var registerService = function() {
             isValid = false;
 
             if(ev.getAttribute("data-bind") == "name"){
-                name = ev.value;
-                updateRegisterUser(ev);
+                if(controlFio(ev)){
+                    name = ev.value;
+                    updateRegisterUser(ev);
+                    $(ev).parent().removeClass("has-error");
+                }
+                else{
+                    name = "";
+                    $(ev).parent().addClass("has-error");
+                }
             }
             else if(ev.getAttribute("data-bind") == "surname"){
-                surname = ev.value;
-                updateRegisterUser(ev);
+                if(controlFio(ev)){
+                    surname = ev.value;
+                    updateRegisterUser(ev);
+                    $(ev).parent().removeClass("has-error");
+                }
+                else{
+                    surname = "";
+                    $(ev).parent().addClass("has-error");
+                }
             }
             else if(ev.getAttribute("data-bind") == "patronymic"){
-                patronymic = ev.value;
-                updateRegisterUser(ev);
+                if(controlFio(ev)){
+                    patronymic = ev.value;
+                    updateRegisterUser(ev);
+                    $(ev).parent().removeClass("has-error");
+                }
+                else{
+                    patronymic = "";
+                    $(ev).parent().addClass("has-error");
+                }
             }
             else if(ev.getAttribute("data-bind") == "phone"){
                 phone = ev.value;
@@ -40,6 +61,9 @@ var registerService = function() {
                 pass = ev.value;
                 updateRegisterUser(ev);
             }
+
+        },
+        isValidated: function(){
             if (name.length == 0 || surname.length == 0 || patronymic.length == 0
                 || phone.length == 0 || email.length == 0 || login.length == 0 || pass.length == 0) {
                 console.log("Вы заполнили не все поля");
@@ -53,7 +77,7 @@ var registerService = function() {
             else {
                 isValid = true;
             }
-        },
-        isValidated: function(){return isValid}
+            return isValid
+        }
     }
 }();
