@@ -5,7 +5,7 @@ var registerService = function() {
 
     var isValid = false, name = "", surname = "",
         patronymic = "", phone = "", email = "",
-        login = "", pass = "";
+        login = "", pass = "", pass_repeat = "";
 
     return {
         registerValidation: function(ev) {
@@ -100,100 +100,32 @@ var registerService = function() {
                     addTooltip(ev, 7);
                 }
             }
-
+            else if(ev.getAttribute("data-bind") == "pass_repeat"){
+                if(controlAuth(ev)){
+                    pass_repeat = ev.value;
+                    removeTooltip(ev);
+                    if ((pass_repeat.length < 6) && (pass_repeat.length != 0)){
+                        addTooltip(ev, 9);
+                        pass_repeat = "";
+                    }
+                }
+                else{
+                    removeTooltip(ev);
+                    pass_repeat = "";
+                    addTooltip(ev, 7);
+                }
+            }
         },
         isValidated: function(){
             if ((name.length == 0) || (surname.length == 0) || (patronymic.length == 0) ||
-                (phone.length == 0) || (email.length == 0) || (login.length == 0) || (pass.length == 0)){
+                (phone.length == 0) || (email.length == 0) || (login.length == 0) || (pass.length == 0)
+                || (pass_repeat.length == 0) || (pass_repeat != pass)){
                 alert("Некоторые поля не заполнены, либо заполнены не корректно");
             }
             else {
                 isValid = true;
             }
-            return isValid
+            return isValid;
         }
     }
 }();
-
-var removeTooltip = function(ev){
-    $(ev).parent().removeClass("has-error");
-    $(ev).tooltip("destroy");
-};
-var addTooltip = function(ev, key){
-    $(ev).parent().addClass("has-error");
-    switch (key)
-    {
-        case 1:{
-            $(ev).tooltip({
-                trigger: "manual",
-                placement: "bottom",
-                title: "Имя может содержать только символы русского и латинского алфавита"
-            }).tooltip("show");
-            break;
-        }
-        case 2:{
-            $(ev).tooltip({
-                trigger: "manual",
-                placement: "bottom",
-                title: "Фамилия может содержать только символы русского и латинского алфавита"
-            }).tooltip("show");
-            break;
-        }
-        case 3:{
-            $(ev).tooltip({
-                trigger: "manual",
-                placement: "bottom",
-                title: "Отчество может содержать только символы русского и латинского алфавита"
-            }).tooltip("show");
-            break;
-        }
-        case 4:{
-            $(ev).tooltip({
-                trigger: "manual",
-                placement: "bottom",
-                title: "Номер телефона может содержать только цифры"
-            }).tooltip("show");
-            break;
-        }
-        case 5:{
-            $(ev).tooltip({
-                trigger: "manual",
-                placement: "bottom",
-                title: "Email содержит недопустимые символы"
-            }).tooltip("show");
-            break;
-        }
-        case 6:{
-            $(ev).tooltip({
-                trigger: "manual",
-                placement: "bottom",
-                title: "Логин содержит недопустимые символы"
-            }).tooltip("show");
-            break;
-        }
-        case 7:{
-            $(ev).tooltip({
-                trigger: "manual",
-                placement: "bottom",
-                title: "Пароль содержит недопустимые символы"
-            }).tooltip("show");
-            break;
-        }
-        case 8:{
-            $(ev).tooltip({
-                trigger: "manual",
-                placement: "bottom",
-                title: "Логин должен содержать не менее 6 символов"
-            }).tooltip("show");
-            break;
-        }
-        case 9:{
-            $(ev).tooltip({
-                trigger: "manual",
-                placement: "bottom",
-                title: "Пароль должен содержать не менее 6 символов"
-            }).tooltip("show");
-            break;
-        }
-    }
-};

@@ -27,5 +27,9 @@
         <label>Password</label>
         <input type="password" class="form-control" data-bind="pass" placeholder="Password" oninput="registerService.registerValidation(this)">
     </div>
+    <div class="form-group">
+        <label>Repeat password</label>
+        <input type="password" class="form-control" data-bind="pass_repeat" placeholder="Password" oninput="registerService.registerValidation(this)">
+    </div>
     <button type="button" class="btn btn-default" onclick="AuthFactory().actions.register()">Зарегистрироваться</button>
 </form> <!-- registration -->

@@ -1,5 +1,5 @@
 /**
- * Created by ����� on 05.04.2016.
+ * Created by Борис on 05.04.2016.
  */
 var controlFio = function(ev){
     var key = true, str = ev.value;
@@ -64,4 +64,88 @@ var controlAuth = function(ev){
         }
     }
     return key;
+};
+
+
+var removeTooltip = function(ev){
+    $(ev).parent().removeClass("has-error");
+    $(ev).tooltip("destroy");
+};
+var addTooltip = function(ev, key){
+    $(ev).parent().addClass("has-error");
+    switch (key)
+    {
+        case 1:{
+            $(ev).tooltip({
+                trigger: "manual",
+                placement: "bottom",
+                title: "Имя может содержать только символы русского и латинского алфавита"
+            }).tooltip("show");
+            break;
+        }
+        case 2:{
+            $(ev).tooltip({
+                trigger: "manual",
+                placement: "bottom",
+                title: "Фамилия может содержать только символы русского и латинского алфавита"
+            }).tooltip("show");
+            break;
+        }
+        case 3:{
+            $(ev).tooltip({
+                trigger: "manual",
+                placement: "bottom",
+                title: "Отчество может содержать только символы русского и латинского алфавита"
+            }).tooltip("show");
+            break;
+        }
+        case 4:{
+            $(ev).tooltip({
+                trigger: "manual",
+                placement: "bottom",
+                title: "Номер телефона может содержать только цифры"
+            }).tooltip("show");
+            break;
+        }
+        case 5:{
+            $(ev).tooltip({
+                trigger: "manual",
+                placement: "bottom",
+                title: "Email содержит недопустимые символы"
+            }).tooltip("show");
+            break;
+        }
+        case 6:{
+            $(ev).tooltip({
+                trigger: "manual",
+                placement: "bottom",
+                title: "Логин содержит недопустимые символы"
+            }).tooltip("show");
+            break;
+        }
+        case 7:{
+            $(ev).tooltip({
+                trigger: "manual",
+                placement: "bottom",
+                title: "Пароль содержит недопустимые символы"
+            }).tooltip("show");
+            break;
+        }
+        case 8:{
+            $(ev).tooltip({
+                trigger: "manual",
+                placement: "bottom",
+                title: "Логин должен содержать не менее 6 символов"
+            }).tooltip("show");
+            break;
+        }
+        case 9:{
+            $(ev).tooltip({
+                trigger: "manual",
+                placement: "bottom",
+                title: "Пароль должен содержать не менее 6 символов"
+            }).tooltip("show");
+            break;
+        }
+    }
 };

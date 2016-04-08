@@ -11,9 +11,11 @@ var AuthFactory = function () {
                     $.post('http://localhost:9000/reg/', RegisterUser).done(function (d) {
                         console.log(d);
                         $('.modal').modal('hide');
-                        //alert(d);
                         if (document.cookie.length != 0){
                             location.hash = "#persArea";
+                        }
+                        else {
+                            alert("");
                         }
                     });
                 }
@@ -21,11 +23,13 @@ var AuthFactory = function () {
             auth: function () {
                 if (authUserService.isValidated()) {
                     $.post('http://localhost:9000/auth/', AuthUser).success(function (data, textStatus, request) {
-                        //console.log(data);
                         console.log(request);
                         s = request;
                         if (document.cookie.length != 0){
                             location.hash = "#persArea";
+                        }
+                        else{
+                            alert("Пользователя с таким логином или паролем не существует");
                         }
                     });
                 }
@@ -34,7 +38,7 @@ var AuthFactory = function () {
                 $.get('http://localhost:9000/logout').done(function (d) {
                     console.log(d);
                     $('.modal').modal('hide');
-                })
+                });
                 location.hash = "#home";
             },
             changePass: function () {

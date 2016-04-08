@@ -1,5 +1,5 @@
 /**
- * Created by Борис on 28.03.2016.
+ * Created by Р‘РѕСЂРёСЃ on 28.03.2016.
  */
 var authUserService = function() {
 
@@ -20,13 +20,15 @@ var authUserService = function() {
                 pass = ev.value;
                 updateAuthUser(ev);
             }
+        },
+        isValidated: function(){
             if (login.length == 0 || pass.length == 0) {
-                console.log("Вы заполнили не все поля");
+                console.log("РќРµРєРѕС‚РѕСЂС‹Рµ РїРѕР»СЏ РЅРµ Р·Р°РїРѕР»РЅРµРЅС‹");
             }
             else {
                 isValid = true;
             }
-        },
-        isValidated: function(){return isValid}
+            return isValid;
+        }
     }
 }();
