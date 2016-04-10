@@ -11,6 +11,9 @@ var routes = function(){
         if(items[window.location.hash] == null){
             window.location.hash = '#home';
         }
+        /*else if (location.hash == "#persArea"){
+            $('#greet').html(s.responseText);
+        }*/
 
         $.ajax({
             url: "views/partials/" + items[window.location.hash]

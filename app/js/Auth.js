@@ -15,7 +15,7 @@ var AuthFactory = function () {
                             location.hash = "#persArea";
                         }
                         else {
-                            alert("");
+                            alert(d);
                         }
                     });
                 }
@@ -29,7 +29,7 @@ var AuthFactory = function () {
                             location.hash = "#persArea";
                         }
                         else{
-                            alert("Пользователя с таким логином или паролем не существует");
+                            alert(s.responseText);
                         }
                     });
                 }
@@ -46,6 +46,7 @@ var AuthFactory = function () {
                     $.post('http://localhost:9000/changePass/', ChangePassUser).done(function (d) {
                         console.log(d);
                         $('.modal').modal('hide');
+                        alert("Пароль успешно изменен");
                     })
                 }
             }

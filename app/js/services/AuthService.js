@@ -23,7 +23,7 @@ var authUserService = function() {
         },
         isValidated: function(){
             if (login.length == 0 || pass.length == 0) {
-                console.log("Некоторые поля не заполнены");
+                alert("Некоторые поля не заполнены");
             }
             else {
                 isValid = true;

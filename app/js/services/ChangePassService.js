@@ -12,25 +12,47 @@ var authService = function() {
 
             isValid = false;
             if(ev.getAttribute("data-bind") == "newPass"){
-                newPass = ev.value;
+                if(controlAuth(ev)){
+                    newPass = ev.value;
+                    updatePassUser(ev);
+                    removeTooltip(ev);
+                    if ((newPass.length < 6) && (newPass.length != 0)){
+                        addTooltip(ev, 9);
+                        newPass = "";
+                    }
+                }
+                else{
+                    removeTooltip(ev);
+                    newPass = "";
+                    addTooltip(ev, 7);
+                }
             }
             else if(ev.getAttribute("data-bind") == "newPass2"){
-                newPass2 = ev.value;
-            }
-            if (newPass.length == 0 || newPass2.length == 0) {
-                console.log("Вы заполнили не все поля");
-            }
-            else if (newPass != newPass2) {
-                console.log("Данные введены не корректно");
-            }
-            else if (newPass.length < 6) {
-                console.log("Введите более длинный пароль");
-            } else {
-                isValid = true;
-                updatePassUser(ev);
+                if(controlAuth(ev)){
+                    newPass2 = ev.value;
+                    updatePassUser(ev);
+                    removeTooltip(ev);
+                    if ((newPass2.length < 6) && (newPass2.length != 0)){
+                        addTooltip(ev, 9);
+                        newPass2 = "";
+                    }
+                }
+                else{
+                    removeTooltip(ev);
+                    newPass2 = "";
+                    addTooltip(ev, 7);
+                }
             }
         },
-        isValidated: function(){return isValid}
+        isValidated: function(){
+            if (newPass.length == 0 || newPass2.length == 0 || (newPass != newPass2)) {
+                alert("Некоторые поля не заполнены, либо заполнены не корректно");
+            }
+            else {
+                isValid = true;
+            }
+            return isValid;
+        }
     }
 }();
 
