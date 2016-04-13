@@ -1,5 +1,5 @@
 /**
- * Created by Борис on 25.03.2016.
+ * Created by Р‘РѕСЂРёСЃ on 25.03.2016.
  */
 var ApiarFactory = function()
 {
@@ -10,6 +10,7 @@ var ApiarFactory = function()
                     $.post('http://localhost:9000/addAp/', AddApp).done(function (d) {
                         console.log(d);
                         $('.modal').modal('hide');
+                        ApiarFactory().actions.getAllApp();
                     });
                 }
             },
@@ -33,43 +34,72 @@ var ApiarFactory = function()
                 $.get('http://localhost:9000/getAllApp').done(function(d){
                     console.log(d);
 
-                    $('.forTable').html('');
-                    $('.forTable').append(
-                        '<table class="table table-hover apiarTableAppend">' +
-                        '</table>');
                     $('.apiarTableAppend').append(
                         '<thead>'+
-                        '<tr style="text-align: center">' +
-                        '<th>Пасека №</th>' +
-                        '<th>Аналитика массы</th>' +
-                        '<th>Аналитика температуры</th>' +
-                        '<th>Аналитика влажности</th>' +
-                        '<th>Координаты GPS</th>' +
-                        '<th>Мин.температура</th>' +
-                        '<th>Макс.температура</th>' +
-                        '<th>Мин.влажность</th>' +
-                        '<th>Макс.влажность</th>' +
-                        '</tr>' +
-                        '</thead>');
+                            '<tr>' +
+                                '<th style="text-align: center; vertical-align: middle">Р”РµР№СЃС‚РІРёСЏ</th>' +
+                                '<th style="text-align: center; vertical-align: middle">РђРЅР°Р»РёС‚РёРєР° РјР°СЃСЃС‹</th>' +
+                                '<th style="text-align: center; vertical-align: middle">РђРЅР°Р»РёС‚РёРєР° С‚РµРјРї.</th>' +
+                                '<th style="text-align: center; vertical-align: middle">РђРЅР°Р»РёС‚РёРєР° РІР»Р°Р¶РЅ.</th>' +
+                                '<th style="text-align: center; vertical-align: middle">РљРѕРѕСЂРґРёРЅР°С‚С‹</th>' +
+                                '<th style="text-align: center; vertical-align: middle">РњРёРЅ.С‚РµРјРї.</th>' +
+                                '<th style="text-align: center; vertical-align: middle">РњР°РєСЃ.С‚РµРјРї.</th>' +
+                                '<th style="text-align: center; vertical-align: middle">РњРёРЅ.РІР»Р°Р¶РЅ.</th>' +
+                                '<th style="text-align: center; vertical-align: middle">РњР°РєСЃ.РІР»Р°Р¶РЅ.</th>' +
+                            '</tr>' +
+                        '</thead>' +
+                        '<tbody>');
                     d.forEach(function(s){
                         $('.apiarTableAppend').append(
-                            '<tbody>' +
-                            '<tr style="text-align: center">' +
-                            '<td>' + s.ap_id +'</td> ' +
-                            '<td>' + s.an_mas +'</td> ' +
-                            '<td>' + s.an_temp +'</td> ' +
-                            '<td>' + s.an_hum +'</td> ' +
-                            '<td>' + s.gps +'</td> ' +
-                            '<td>' + s.min_temp +'</td> ' +
-                            '<td>' + s.max_temp +'</td> ' +
-                            '<td>' + s.min_hum +'</td> ' +
-                            '<td>' + s.max_hum +'</td>' +
-                            '</tr>' +
-                            '</tbody>');
+                            '<tr>' +
+                                '<td>' +
+                                    '<div class="btn-group" role="group" aria-label="...">' +
+                                        '<button type="button" class="btn btn-default" style="display: none" title="Р”РѕР±Р°РІРёС‚СЊ РїР°СЃРµРєСѓ">+</button>' +
+                                        '<button type="button" class="btn btn-default" title="РЈРґР°Р»РёС‚СЊ РїР°СЃРµРєСѓ">-</button>' +
+                                        '<button type="button" class="btn btn-default" title="РџРµСЂРµР№С‚Рё">>></button>' +
+                                        '<button type="button" class="btn btn-default" title="РР·РјРµРЅРёС‚СЊ">modify</button>' +
+                                    '</div>' +
+                                '</td> ' +
+                                '<td style="text-align: center; vertical-align: middle;">' + s.an_mas +'</td> ' +
+                                '<td style="text-align: center; vertical-align: middle;">' + s.an_temp +'</td> ' +
+                                '<td style="text-align: center; vertical-align: middle;">' + s.an_hum +'</td> ' +
+                                '<td style="text-align: center; vertical-align: middle;">' + s.gps +'</td> ' +
+                                '<td style="text-align: center; vertical-align: middle;">' + s.min_temp +'</td> ' +
+                                '<td style="text-align: center; vertical-align: middle;">' + s.max_temp +'</td> ' +
+                                '<td style="text-align: center; vertical-align: middle;">' + s.min_hum +'</td> ' +
+                                '<td style="text-align: center; vertical-align: middle;">' + s.max_hum +'</td>' +
+                            '</tr>');
                     });
+                    $('.apiarTableAppend').append(
+                    '<tr>' +
+                        '<td>' +
+                            '<div class="btn-group" role="group" aria-label="...">' +
+                                '<button type="button" class="btn btn-default" title="Р”РѕР±Р°РІРёС‚СЊ РїР°СЃРµРєСѓ" onclick="ApiarFactory().actions.addAp()">+</button>' +
+                                '<button type="button" class="btn btn-default" style="display: none" title="РЈРґР°Р»РёС‚СЊ РїР°СЃРµРєСѓ">-</button>' +
+                                '<button type="button" class="btn btn-default" style="display: none" title="РР·РјРµРЅРёС‚СЊ">modify</button>' +
+                            '</div>' +
+                        '</td>' +
+                        '<td style="text-align: center; vertical-align: middle">-</td>' +
+                        '<td style="text-align: center; vertical-align: middle">-</td>' +
+                        '<td style="text-align: center; vertical-align: middle">-</td>' +
+                        '<td style="text-align: center; vertical-align: middle">-</td>' +
+                        '<td style="text-align: center; vertical-align: middle">' +
+                            '<input class="form-control" data-bind="min_temp" oninput="addAppService.addAppValidation(this)" placeholder="РњРёРЅ tC">' +
+                        '</td>' +
+                        '<td style="text-align: center; vertical-align: middle">' +
+                            '<input class="form-control" data-bind="max_temp" oninput="addAppService.addAppValidation(this)" placeholder="MР°РєСЃ tC">' +
+                        '</td>' +
+                        '<td style="text-align: center; vertical-align: middle">' +
+                            '<input class="form-control" data-bind="min_hum" oninput="addAppService.addAppValidation(this)" placeholder="MРёРЅ Рі/РјВі">' +
+                        '</td>' +
+                        '<td style="text-align: center; vertical-align: middle">' +
+                            '<input class="form-control" data-bind="max_hum" oninput="addAppService.addAppValidation(this)" placeholder="MР°РєСЃ Рі/РјВі">' +
+                        '</td>' +
+                    '</tr>' +
+                    '</tbody>');
                     $('.modal').modal('hide');
                 })
             }
         }
     }
-}
+};

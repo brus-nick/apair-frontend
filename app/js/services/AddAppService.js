@@ -12,21 +12,51 @@ var addAppService = function() {
             isValid = false;
 
             if(ev.getAttribute("data-bind") == "min_temp"){
-                min_temp = ev.value;
-                updateAddApp(ev);
+                if(controlTemp(ev)){
+                    min_temp = ev.value;
+                    updateAddApp(ev);
+                    removeTooltip(ev);
+                }
+                else{
+                    min_temp = "";
+                    addTooltip(ev, 1);
+                }
             }
             else if(ev.getAttribute("data-bind") == "max_temp"){
-                max_temp = ev.value;
-                updateAddApp(ev);
+                if(controlTemp(ev)){
+                    max_temp = ev.value;
+                    updateAddApp(ev);
+                    removeTooltip(ev);
+                }
+                else{
+                    max_temp = "";
+                    addTooltip(ev, 1);
+                }
             }
             else if(ev.getAttribute("data-bind") == "min_hum"){
-                min_hum = ev.value;
-                updateAddApp(ev);
+                if(controlHumid(ev)){
+                    min_hum = ev.value;
+                    updateAddApp(ev);
+                    removeTooltip(ev);
+                }
+                else{
+                    min_hum = "";
+                    addTooltip(ev, 1);
+                }
             }
             else if(ev.getAttribute("data-bind") == "max_hum"){
-                max_hum = ev.value;
-                updateAddApp(ev);
+                if(controlHumid(ev)){
+                    max_temp = ev.value;
+                    updateAddApp(ev);
+                    removeTooltip(ev);
+                }
+                else{
+                    max_temp = "";
+                    addTooltip(ev, 1);
+                }
             }
+        },
+        isValidated: function(){
             if (min_temp.length == 0 || max_temp.length == 0 || min_hum.length == 0
                 || max_hum.length == 0) {
                 console.log("Вы заполнили не все поля");
@@ -34,7 +64,6 @@ var addAppService = function() {
             else {
                 isValid = true;
             }
-        },
-        isValidated: function(){return isValid}
+            return isValid}
     }
 }();

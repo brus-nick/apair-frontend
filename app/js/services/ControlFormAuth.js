@@ -66,7 +66,6 @@ var controlAuth = function(ev){
     return key;
 };
 
-
 var removeTooltip = function(ev){
     $(ev).parent().removeClass("has-error");
     $(ev).tooltip("destroy");

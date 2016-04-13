@@ -11,9 +11,10 @@ var routes = function(){
         if(items[window.location.hash] == null){
             window.location.hash = '#home';
         }
-        /*else if (location.hash == "#persArea"){
-            $('#greet').html(s.responseText);
-        }*/
+        else if (location.hash == "#persArea"){
+            //$('#greet').html(s.responseText);
+            ApiarFactory().actions.getAllApp();
+        }
 
         $.ajax({
             url: "views/partials/" + items[window.location.hash]

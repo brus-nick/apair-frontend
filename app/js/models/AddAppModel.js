@@ -1,5 +1,5 @@
 /**
- * Created by Борис on 28.03.2016.
+ * Created by Р‘РѕСЂРёСЃ on 28.03.2016.
  */
 var AddApp = {
 };
