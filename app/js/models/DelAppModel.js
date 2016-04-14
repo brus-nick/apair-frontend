@@ -6,7 +6,7 @@ var DelApp = {
 
 var updateDelApp = function(ev){
 
-    console.log(ev.value);
     console.log(ev.getAttribute('data-bind'));
-    DelApp[ev.getAttribute('data-bind')] = ev.value;
+    DelApp.ap_id = ev.getAttribute('data-bind');
+    ApiarFactory().actions.delApiar();
 };

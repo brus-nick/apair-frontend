@@ -3,24 +3,15 @@
  */
 var delAppService = function() {
 
-    var isValid = false, ap_id = "";
+    var isValid = false;
 
     return {
         delAppValidation: function(ev) {
 
-            isValid = false;
-
-            if(ev.getAttribute("data-bind") == "ap_id"){
-                ap_id = ev.value;
+            isValid = confirm("Вы действительно хотите удалить пасеку и все её улья?");
+            if (isValid){
                 updateDelApp(ev);
             }
-            if (ap_id.length == 0) {
-                console.log("Вы заполнили не все поля");
-            }
-            else {
-                isValid = true;
-            }
-        },
-        isValidated: function(){return isValid}
+        }
     }
 }();

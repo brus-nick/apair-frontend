@@ -146,5 +146,21 @@ var addTooltip = function(ev, key){
             }).tooltip("show");
             break;
         }
+        case 10:{
+            $(ev).tooltip({
+                trigger: "manual",
+                placement: "bottom",
+                title: "Доступные символы {0-9;+;-}"
+            }).tooltip("show");
+            break;
+        }
+        case 11:{
+            $(ev).tooltip({
+                trigger: "manual",
+                placement: "bottom",
+                title: "Доступные символы {0-9;.;,}"
+            }).tooltip("show");
+            break;
+        }
     }
 };

@@ -23,17 +23,17 @@ var ApiarFactory = function()
                 }
             },
             delApiar: function() {
-                if (delAppService.isValidated()) {
-                    $.post('http://localhost:9000/delAp/', DelApp).done(function (d) {
-                        console.log(d);
-                        $('.modal').modal('hide');
-                    })
-                }
+                $.post('http://localhost:9000/delAp/', DelApp).done(function (d) {
+                    console.log(d);
+                    $('.modal').modal('hide');
+                    ApiarFactory().actions.getAllApp();
+                })
             },
             getAllApp: function() {
                 $.get('http://localhost:9000/getAllApp').done(function(d){
                     console.log(d);
 
+                    $('.apiarTableAppend').html("");
                     $('.apiarTableAppend').append(
                         '<thead>'+
                             '<tr>' +
@@ -55,7 +55,7 @@ var ApiarFactory = function()
                                 '<td>' +
                                     '<div class="btn-group" role="group" aria-label="...">' +
                                         '<button type="button" class="btn btn-default" style="display: none" title="Добавить пасеку">+</button>' +
-                                        '<button type="button" class="btn btn-default" title="Удалить пасеку">-</button>' +
+                                        '<button type="button" class="btn btn-default" title="Удалить пасеку" data-bind="' + s.ap_id + '"onclick="delAppService.delAppValidation(this)">-</button>' +
                                         '<button type="button" class="btn btn-default" title="Перейти">>></button>' +
                                         '<button type="button" class="btn btn-default" title="Изменить">modify</button>' +
                                     '</div>' +
