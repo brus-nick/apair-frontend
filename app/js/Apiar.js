@@ -19,7 +19,8 @@ var ApiarFactory = function()
                     $.post('http://localhost:9000/changeAp/', ChangeApp).done(function (d) {
                         console.log(d);
                         $('.modal').modal('hide');
-                    })
+                        ApiarFactory().actions.getAllApp();
+                    });
                 }
             },
             delApiar: function() {
@@ -33,8 +34,8 @@ var ApiarFactory = function()
                 $.get('http://localhost:9000/getAllApp').done(function(d){
                     console.log(d);
 
-                    $('.apiarTableAppend').html("");
-                    $('.apiarTableAppend').append(
+                    $('.TableAppend').html("");
+                    $('.TableAppend').append(
                         '<thead>'+
                             '<tr>' +
                                 '<th style="text-align: center; vertical-align: middle">Действия</th>' +
@@ -50,14 +51,14 @@ var ApiarFactory = function()
                         '</thead>' +
                         '<tbody>');
                     d.forEach(function(s){
-                        $('.apiarTableAppend').append(
+                        $('.TableAppend').append(
                             '<tr>' +
                                 '<td>' +
                                     '<div class="btn-group" role="group" aria-label="...">' +
                                         '<button type="button" class="btn btn-default" style="display: none" title="Добавить пасеку">+</button>' +
                                         '<button type="button" class="btn btn-default" title="Удалить пасеку" data-bind="' + s.ap_id + '"onclick="delAppService.delAppValidation(this)">-</button>' +
-                                        '<button type="button" class="btn btn-default" title="Перейти">>></button>' +
-                                        '<button type="button" class="btn btn-default" title="Изменить">modify</button>' +
+                                        '<button type="button" class="btn btn-default" title="Перейти" data-bind="' + s.ap_id + '"onclick="updateGetHives(this)">>></button>' +
+                                        '<button type="button" class="btn btn-default" title="Изменить" data-bind="' + s.ap_id + '"onclick="updateChangeApp(this)" data-toggle="modal" data-target="#modalChangeAp">modify</button>' +
                                     '</div>' +
                                 '</td> ' +
                                 '<td style="text-align: center; vertical-align: middle;">' + s.an_mas +'</td> ' +
@@ -70,7 +71,7 @@ var ApiarFactory = function()
                                 '<td style="text-align: center; vertical-align: middle;">' + s.max_hum +'</td>' +
                             '</tr>');
                     });
-                    $('.apiarTableAppend').append(
+                    $('.TableAppend').append(
                     '<tr>' +
                         '<td>' +
                             '<div class="btn-group" role="group" aria-label="...">' +

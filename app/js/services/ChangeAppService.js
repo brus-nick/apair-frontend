@@ -1,9 +1,9 @@
 /**
- * Created by ����� on 28.03.2016.
+ * Created by Борис on 28.03.2016.
  */
 var changeAppService = function() {
 
-    var isValid = false, ap_id = "", min_temp = "", max_temp = "",
+    var isValid = false, min_temp = "", max_temp = "",
         min_hum = "", max_hum = "";
 
     return {
@@ -11,34 +11,60 @@ var changeAppService = function() {
 
             isValid = false;
 
-            if(ev.getAttribute("data-bind") == "ap_id"){
-                ap_id = ev.value;
-                updateChangeApp(ev);
-            }
-            else if(ev.getAttribute("data-bind") == "min_temp"){
-                min_temp = ev.value;
-                updateChangeApp(ev);
+            if(ev.getAttribute("data-bind") == "min_temp"){
+                if(controlTemp(ev)){
+                    min_temp = ev.value;
+                    updateChangeApp(ev);
+                    removeTooltip(ev);
+                }
+                else{
+                    min_temp = "";
+                    addTooltip(ev, 10);
+                }
             }
             else if(ev.getAttribute("data-bind") == "max_temp"){
-                max_temp = ev.value;
-                updateChangeApp(ev);
+                if(controlTemp(ev)){
+                    max_temp = ev.value;
+                    updateChangeApp(ev);
+                    removeTooltip(ev);
+                }
+                else{
+                    max_temp = "";
+                    addTooltip(ev, 10);
+                }
             }
             else if(ev.getAttribute("data-bind") == "min_hum"){
-                min_hum = ev.value;
-                updateChangeApp(ev);
+                if(controlHumid(ev)){
+                    min_hum = ev.value;
+                    updateChangeApp(ev);
+                    removeTooltip(ev);
+                }
+                else{
+                    min_hum = "";
+                    addTooltip(ev, 11);
+                }
             }
             else if(ev.getAttribute("data-bind") == "max_hum"){
-                max_hum = ev.value;
-                updateChangeApp(ev);
+                if(controlHumid(ev)){
+                    max_hum = ev.value;
+                    updateChangeApp(ev);
+                    removeTooltip(ev);
+                }
+                else{
+                    max_hum = "";
+                    addTooltip(ev, 11);
+                }
             }
-            if (ap_id.length == 0 || min_temp.length == 0 || max_temp.length == 0 || min_hum.length == 0
+        },
+        isValidated: function(){
+            if (min_temp.length == 0 || max_temp.length == 0 || min_hum.length == 0
                 || max_hum.length == 0) {
-                console.log("�� ��������� �� ��� ����");
+                console.log("Некоторые поля не заполнены или заполнены не корректно");
             }
             else {
                 isValid = true;
             }
-        },
-        isValidated: function(){return isValid}
+            return isValid
+        }
     }
 }();

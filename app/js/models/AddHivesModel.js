@@ -5,7 +5,7 @@ var AddHives = {
 };
 
 var updateAddHives = function(ev) {
-    console.log(ev.value);
     console.log(ev.getAttribute('data-bind'));
-    AddHives[ev.getAttribute('data-bind')] = ev.value;
+    AddHives.ap_id = ev.getAttribute('data-bind');
+    HivesFactory().action.addHives();
 };

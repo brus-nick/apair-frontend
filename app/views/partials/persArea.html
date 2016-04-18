@@ -89,16 +89,7 @@
             <div class="model-body" style="padding-top: 20px;">
                 <form class="form-horizontal" style="margin-left: 10px;">
                     <div class="form-group">
-                        <label class="col-sm-2 col-xs-4 control-label" style="padding-top: 0px;">Введите №
-                            пасеки</label>
-
-                        <div class="col-sm-9 col-xs-9">
-                            <input class="form-control" data_bind="ap_id"
-                                   oninput="changeAppService.changeAppValidation(this)" style="margin-left: 30px;">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 col-xs-4 control-label">Мин.температура</label>
+                        <label class="col-sm-2 col-xs-4 control-label">Мин.темп.</label>
 
                         <div class="col-sm-9 col-xs-9">
                             <input type="temp" class="form-control" data-bind="min_temp"
@@ -107,7 +98,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 col-xs-4 control-label">Макс.температура</label>
+                        <label class="col-sm-2 col-xs-4 control-label">Макс.темп.</label>
 
                         <div class="col-sm-9 col-xs-9">
                             <input type="temp" class="form-control" data-bind="max_temp"
@@ -116,7 +107,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 col-xs-4 control-label">Мин.влажность</label>
+                        <label class="col-sm-2 col-xs-4 control-label">Мин.влажн.</label>
 
                         <div class="col-sm-9 col-xs-9">
                             <input type="hum" class="form-control" data-bind="min_hum"
@@ -125,7 +116,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 col-xs-4 control-label">Макс.влажность</label>
+                        <label class="col-sm-2 col-xs-4 control-label">Макс.влажн.</label>
 
                         <div class="col-sm-9 col-xs-9">
                             <input type="hum" class="form-control" data-bind="max_hum"
@@ -133,10 +124,10 @@
                                    style="margin-left: 30px;">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-offset-5 col-sm-2 col-xs-offset-5 col-xs-2">
+                    <div class="form-group">
+                        <div class="col-sm-offset-5 col-sm-2 col-xs-offset-5 col-xs-2" style="padding: 0px;">
                             <button type="button" class="btn btn-default" onclick="ApiarFactory().actions.changeAp()">
-                                Изменить
+                                Сохранить изменения
                             </button>
                         </div>
                     </div>
@@ -228,7 +219,7 @@
 
 <div class="row" style="margin-left: 15px; margin-right: 15px;">
     <div class="panel panel-default forTable" style="padding: 0px;">
-        <table class="table table-hover apiarTableAppend">
+        <table class="table table-hover TableAppend">
         </table>
     </div>
 </div>

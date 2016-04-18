@@ -1,17 +1,18 @@
 /**
- * Created by Борис on 25.03.2016.
+ * Created by Р‘РѕСЂРёСЃ on 25.03.2016.
  */
 var HivesFactory = function()
 {
+    var ap_Id;
+
     return{
         action: {
             addHives: function () {
-                if (addHivesService.isValidated()) {
                     $.post('http://localhost:9000/addHives/', AddHives).done(function (d) {
                         console.log(d);
                         $('.modal').modal('hide');
+                        HivesFactory().action.getHives(ap_Id);
                     })
-                }
             },
             delHives: function() {
                 if(delHivesService.isValidated()) {
@@ -21,43 +22,56 @@ var HivesFactory = function()
                     })
                 }
             },
-            getHives: function() {
-                if(getHivesService.isValidated()) {
-                    $.post('http://localhost:9000/getHives/', GetHives).done(function (d) {
-                        console.log(d);
-
-                        $('.forTable').html('');
-                        $('.forTable').append(
-                            '<table class="table table-hover hivesTableAppend">' +
-                            '</table>');
-                        $('.hivesTableAppend').append(
-                            '<thead>' +
-                            '<tr style="text-align: center">' +
-                            '<th>Улей №</th>' +
-                            '<th>Аналитика массы</th>' +
-                            '<th>Аналитика температуры</th>' +
-                            '<th>Аналитика влажности</th>' +
-                            '<th>Координаты GPS</th>' +
-                            '<th>Состояние</th>' +
-                            '</tr>' +
-                            '</thead>');
-                        d.forEach(function (s) {
-                            $('.hivesTableAppend').append(
-                                '<tbody>' +
-                                '<tr style="text-align: center">' +
-                                '<td>' + s.hive_id + '</td> ' +
-                                '<td>' + s.an_mas + '</td> ' +
-                                '<td>' + s.an_temp + '</td> ' +
-                                '<td>' + s.an_hum + '</td> ' +
-                                '<td>' + s.coordinates + '</td> ' +
-                                '<td>' + s.state + '</td> ' +
-                                '</tr>' +
-                                '</tbody>');
-                        });
-                        $('.modal').modal('hide');
-                    })
-                }
+            getHives: function(ap_id) {
+                $.post('http://localhost:9000/getHives/', GetHives).done(function (d) {
+                    console.log(d);
+                    $('.TableAppend').html("");
+                    $('.TableAppend').append(
+                        '<thead>'+
+                        '<tr>' +
+                        '<th style="text-align: center; vertical-align: middle">Р”РµР№СЃС‚РІРёСЏ</th>' +
+                        '<th style="text-align: center; vertical-align: middle">РђРЅР°Р»РёС‚РёРєР° РјР°СЃСЃС‹</th>' +
+                        '<th style="text-align: center; vertical-align: middle">РђРЅР°Р»РёС‚РёРєР° С‚РµРјРї.</th>' +
+                        '<th style="text-align: center; vertical-align: middle">РђРЅР°Р»РёС‚РёРєР° РІР»Р°Р¶РЅ.</th>' +
+                        '<th style="text-align: center; vertical-align: middle">РљРѕРѕСЂРґРёРЅР°С‚С‹</th>' +
+                        '<th style="text-align: center; vertical-align: middle">РЎРѕСЃС‚РѕСЏРЅРёРµ</th>' +
+                        '</tr>' +
+                        '</thead>' +
+                        '<tbody>');
+                    d.forEach(function(s){
+                        $('.TableAppend').append(
+                            '<tr>' +
+                            '<td>' +
+                            '<div class="btn-group" role="group" aria-label="...">' +
+                            '<button type="button" class="btn btn-default" style="display: none" title="Р”РѕР±Р°РІРёС‚СЊ СѓР»РµР№">+</button>' +
+                            '<button type="button" class="btn btn-default" title="РЈРґР°Р»РёС‚СЊ СѓР»РµР№" data-bind="' + s.hive_id + '"onclick="delAppService.delAppValidation(this)">-</button>' +
+                            '</div>' +
+                            '</td> ' +
+                            '<td style="text-align: center; vertical-align: middle;">' + s.an_mas +'</td> ' +
+                            '<td style="text-align: center; vertical-align: middle;">' + s.an_temp +'</td> ' +
+                            '<td style="text-align: center; vertical-align: middle;">' + s.an_hum +'</td> ' +
+                            '<td style="text-align: center; vertical-align: middle;">' + s.coordinates +'</td> ' +
+                            '<td style="text-align: center; vertical-align: middle;">' + s.state +'</td> ' +
+                            '</tr>');
+                    });
+                    $('.TableAppend').append(
+                        '<tr>' +
+                        '<td>' +
+                        '<div class="btn-group" role="group" aria-label="...">' +
+                        '<button type="button" class="btn btn-default" title="Р”РѕР±Р°РІРёС‚СЊ СѓР»РµР№" data-bind="' + ap_id + '"onclick="updateAddHives(this)">+</button>' +
+                        '</div>' +
+                        '</td>' +
+                        '<td style="text-align: center; vertical-align: middle">-</td>' +
+                        '<td style="text-align: center; vertical-align: middle">-</td>' +
+                        '<td style="text-align: center; vertical-align: middle">-</td>' +
+                        '<td style="text-align: center; vertical-align: middle">-</td>' +
+                        '<td style="text-align: center; vertical-align: middle">-</td>' +
+                        '</tr>' +
+                        '</tbody>');
+                    $('.modal').modal('hide');
+                });
+                ap_Id = ap_id;
             }
         }
     }
-}
+};

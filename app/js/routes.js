@@ -12,7 +12,6 @@ var routes = function(){
             window.location.hash = '#home';
         }
         else if (location.hash == "#persArea"){
-            //$('#greet').html(s.responseText);
             ApiarFactory().actions.getAllApp();
         }
 
