@@ -14,7 +14,7 @@ var changeAppService = function() {
             if(ev.getAttribute("data-bind") == "min_temp"){
                 if(controlTemp(ev)){
                     min_temp = ev.value;
-                    updateChangeApp(ev);
+                    updateChangeAppData(ev);
                     removeTooltip(ev);
                 }
                 else{
@@ -25,7 +25,7 @@ var changeAppService = function() {
             else if(ev.getAttribute("data-bind") == "max_temp"){
                 if(controlTemp(ev)){
                     max_temp = ev.value;
-                    updateChangeApp(ev);
+                    updateChangeAppData(ev);
                     removeTooltip(ev);
                 }
                 else{
@@ -36,7 +36,7 @@ var changeAppService = function() {
             else if(ev.getAttribute("data-bind") == "min_hum"){
                 if(controlHumid(ev)){
                     min_hum = ev.value;
-                    updateChangeApp(ev);
+                    updateChangeAppData(ev);
                     removeTooltip(ev);
                 }
                 else{
@@ -47,7 +47,7 @@ var changeAppService = function() {
             else if(ev.getAttribute("data-bind") == "max_hum"){
                 if(controlHumid(ev)){
                     max_hum = ev.value;
-                    updateChangeApp(ev);
+                    updateChangeAppData(ev);
                     removeTooltip(ev);
                 }
                 else{
@@ -59,7 +59,7 @@ var changeAppService = function() {
         isValidated: function(){
             if (min_temp.length == 0 || max_temp.length == 0 || min_hum.length == 0
                 || max_hum.length == 0) {
-                console.log("Некоторые поля не заполнены или заполнены не корректно");
+                alert("Некоторые поля не заполнены или заполнены не корректно");
             }
             else {
                 isValid = true;

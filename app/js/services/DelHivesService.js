@@ -1,26 +1,16 @@
 /**
- * Created by Борис on 28.03.2016.
+ * Created by Р‘РѕСЂРёСЃ on 28.03.2016.
  */
 var delHivesService = function() {
 
-    var isValid = false, hive_id = "";
+    var isValid = false;
 
     return {
         delHivesValidation: function(ev) {
-
-            isValid = false;
-
-            if(ev.getAttribute("data-bind") == "hive_id"){
-                hive_id = ev.value;
+            isValid = confirm("Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ СѓР»РµР№?");
+            if (isValid){
                 updateDelHives(ev);
             }
-            if (hive_id.length == 0) {
-                console.log("Вы заполнили не все поля");
-            }
-            else {
-                isValid = true;
-            }
-        },
-        isValidated: function(){return isValid}
+        }
     }
 }();

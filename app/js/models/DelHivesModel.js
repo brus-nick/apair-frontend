@@ -8,5 +8,6 @@ var updateDelHives = function(ev){
 
     console.log(ev.value);
     console.log(ev.getAttribute('data-bind'));
-    DelHives[ev.getAttribute('data-bind')] = ev.value;
+    DelHives.hive_id = ev.getAttribute('data-bind');
+    HivesFactory().action.delHives();
 };

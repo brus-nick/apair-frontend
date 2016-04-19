@@ -59,7 +59,7 @@ var addAppService = function() {
         isValidated: function(){
             if (min_temp.length == 0 || max_temp.length == 0 || min_hum.length == 0
                 || max_hum.length == 0) {
-                console.log("Некоторые поля не заполнены или заполнены не корректно");
+                alert("Некоторые поля не заполнены или заполнены не корректно");
             }
             else {
                 isValid = true;

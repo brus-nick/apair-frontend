@@ -38,6 +38,9 @@ var ApiarFactory = function()
                     $('.TableAppend').append(
                         '<thead>'+
                             '<tr>' +
+                                '<th colspan="9" style="text-align: center; vertical-align: middle">Пасеки</th>' +
+                            '</tr>' +
+                            '<tr>' +
                                 '<th style="text-align: center; vertical-align: middle">Действия</th>' +
                                 '<th style="text-align: center; vertical-align: middle">Аналитика массы</th>' +
                                 '<th style="text-align: center; vertical-align: middle">Аналитика темп.</th>' +
@@ -58,7 +61,7 @@ var ApiarFactory = function()
                                         '<button type="button" class="btn btn-default" style="display: none" title="Добавить пасеку">+</button>' +
                                         '<button type="button" class="btn btn-default" title="Удалить пасеку" data-bind="' + s.ap_id + '"onclick="delAppService.delAppValidation(this)">-</button>' +
                                         '<button type="button" class="btn btn-default" title="Перейти" data-bind="' + s.ap_id + '"onclick="updateGetHives(this)">>></button>' +
-                                        '<button type="button" class="btn btn-default" title="Изменить" data-bind="' + s.ap_id + '"onclick="updateChangeApp(this)" data-toggle="modal" data-target="#modalChangeAp">modify</button>' +
+                                        '<button type="button" class="btn btn-default" title="Изменить" data-bind="' + s.ap_id + '"onclick="updateChangeAppId(this)" data-toggle="modal" data-target="#modalChangeAp">modify</button>' +
                                     '</div>' +
                                 '</td> ' +
                                 '<td style="text-align: center; vertical-align: middle;">' + s.an_mas +'</td> ' +
