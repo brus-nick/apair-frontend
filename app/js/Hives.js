@@ -3,7 +3,6 @@
  */
 var HivesFactory = function()
 {
-    var ap_Id;
 
     return{
         action: {
@@ -12,7 +11,7 @@ var HivesFactory = function()
                     $.post('http://localhost:9000/addHives/', AddHives).done(function (d) {
                         console.log(d);
                         $('.modal').modal('hide');
-                        HivesFactory().action.getHives(ap_Id);
+                        HivesFactory().action.getHives();
                     })
                 }
             },
@@ -20,7 +19,7 @@ var HivesFactory = function()
                 $.post('http://localhost:9000/delHives/', DelHives).done(function (d) {
                     console.log(d);
                     $('.modal').modal('hide');
-                    HivesFactory().action.getHives(ap_Id);
+                    HivesFactory().action.getHives();
                 })
             },
             changeHives: function(){
@@ -28,11 +27,11 @@ var HivesFactory = function()
                     $.post('http://localhost:9000/changeHive/', ChangeHives).done(function (d) {
                         console.log(d);
                         $('.modal').modal('hide');
-                        HivesFactory().action.getHives(ap_Id);
+                        HivesFactory().action.getHives();
                     })
                 }
             },
-            getHives: function(ap_id) {
+            getHives: function() {
                 $.post('http://localhost:9000/getHives/', GetHives).done(function (d) {
                     console.log(d);
                     $('.TableAppend').html("");
@@ -59,7 +58,7 @@ var HivesFactory = function()
                             '<div class="btn-group" role="group" aria-label="...">' +
                             '<button type="button" class="btn btn-default" style="display: none" title="Добавить улей">+</button>' +
                             '<button type="button" class="btn btn-default" title="Удалить улей" data-bind="' + s.hive_id + '"onclick="delHivesService.delHivesValidation(this)">-</button>' +
-                            '<button type="button" class="btn btn-default" title="Вернуться" onclick="ApiarFactory().actions.getAllApp()"><<</button>' +
+                            '<button type="button" class="btn btn-default" title="Перейти" data-bind="' + s.hive_id + '"onclick="updateGetRecords(this)">>></button>' +
                             '<button type="button" class="btn btn-default" title="Изменить GSM телефон" data-bind="' + s.hive_id + '"onclick="updateChangeHiveId(this)" data-toggle="modal" data-target="#modalChangeHive">modify</button>' +
                             '</div>' +
                             '</td> ' +
@@ -76,6 +75,7 @@ var HivesFactory = function()
                         '<td>' +
                         '<div class="btn-group" role="group" aria-label="...">' +
                         '<button type="button" class="btn btn-default" title="Добавить улей" onclick="HivesFactory().action.addHives()">+</button>' +
+                        '<button type="button" class="btn btn-default" title="Вернуться" onclick="ApiarFactory().actions.getAllApp()"><<</button>' +
                         '</div>' +
                         '</td>' +
                         '<td style="text-align: center; vertical-align: middle">-</td>' +
@@ -84,13 +84,12 @@ var HivesFactory = function()
                         '<td style="text-align: center; vertical-align: middle">-</td>' +
                         '<td style="text-align: center; vertical-align: middle">-</td>' +
                         '<td style="text-align: center; vertical-align: middle">' +
-                        '<input class="form-control" data-bind="' + ap_id + '"oninput="addHivesService.addHivesValidation(this)" placeholder="8**********">' +
+                        '<input class="form-control" data-bind="' + GetHives.ap_id + '"oninput="addHivesService.addHivesValidation(this)" placeholder="8**********">' +
                         '</td>' +
                         '</tr>' +
                         '</tbody>');
                     $('.modal').modal('hide');
                 });
-                ap_Id = ap_id;
             }
         }
     }

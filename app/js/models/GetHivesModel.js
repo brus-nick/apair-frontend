@@ -8,5 +8,5 @@ var updateGetHives = function(ev){
 
     console.log(ev.getAttribute('data-bind'));
     GetHives.ap_id = ev.getAttribute('data-bind');
-    HivesFactory().action.getHives(ev.getAttribute('data-bind'));
+    HivesFactory().action.getHives();
 };
