@@ -27,6 +27,7 @@ var AuthFactory = function () {
                         s = request;
                         if (document.cookie.length != 0){
                             location.hash = "#persArea";
+                            AuthFactory().init();//todo rewrite
                         }
                         else{
                             alert(s.responseText);
@@ -37,7 +38,9 @@ var AuthFactory = function () {
             logout: function () {
                 $.get('http://localhost:9000/logout').done(function (d) {
                     console.log(d);
+                    AuthFactory().init();//todo rewrite
                     $('.modal').modal('hide');
+
                 });
                 location.hash = "#home";
             },
@@ -56,6 +59,8 @@ var AuthFactory = function () {
                 $('.ifAuth').append(
                     '<li><button type="button" data-toggle="modal" data-target="#modalChangePass" class="navbar-link navbar-inverse" style="border: 0; padding: 15px;">Изменить пароль</button></li>' +
                     '<li><button type="button" class="navbar-link navbar-inverse" onclick="AuthFactory().actions.logout()" style="border: 0; padding: 15px;">Выйти</button></li>');
+            }else{
+                $('.ifAuth').html('');
             }
         }
     }
