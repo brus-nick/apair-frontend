@@ -7,14 +7,14 @@ var JournalFactory = function()
     return{
         action: {
             delRecord: function() {
-                $.post('http://localhost:9000/delRecord/', DelRecord).done(function (d) {
+                $.post('http://194.58.111.34:9000/delRecord/', DelRecord).done(function (d) {
                     console.log(d);
                     $('.modal').modal('hide');
                     JournalFactory().action.getRecords();
                 })
             },
             getRecords: function() {
-                $.post('http://localhost:9000/getRecords/', GetRecords).done(function (d) {
+                $.post('http://194.58.111.34:9000/getRecords/', GetRecords).done(function (d) {
                     console.log(d);
                     $('.TableAppend').html("");
                     $('.TableAppend').append(

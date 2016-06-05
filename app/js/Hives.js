@@ -8,7 +8,7 @@ var HivesFactory = function()
         action: {
             addHives: function () {
                 if(addHivesService.isValidated()) {
-                    $.post('http://localhost:9000/addHives/', AddHives).done(function (d) {
+                    $.post('http://194.58.111.34:9000/addHives/', AddHives).done(function (d) {
                         console.log(d);
                         $('.modal').modal('hide');
                         HivesFactory().action.getHives();
@@ -16,7 +16,7 @@ var HivesFactory = function()
                 }
             },
             delHives: function() {
-                $.post('http://localhost:9000/delHives/', DelHives).done(function (d) {
+                $.post('http://194.58.111.34:9000/delHives/', DelHives).done(function (d) {
                     console.log(d);
                     $('.modal').modal('hide');
                     HivesFactory().action.getHives();
@@ -24,7 +24,7 @@ var HivesFactory = function()
             },
             changeHives: function(){
                 if(changeHiveService.isValidated()) {
-                    $.post('http://localhost:9000/changeHive/', ChangeHives).done(function (d) {
+                    $.post('http://194.58.111.34:9000/changeHive/', ChangeHives).done(function (d) {
                         console.log(d);
                         $('.modal').modal('hide');
                         HivesFactory().action.getHives();
@@ -32,7 +32,7 @@ var HivesFactory = function()
                 }
             },
             getHives: function() {
-                $.post('http://localhost:9000/getHives/', GetHives).done(function (d) {
+                $.post('http://194.58.111.34:9000/getHives/', GetHives).done(function (d) {
                     console.log(d);
                     $('.TableAppend').html("");
                     $('.TableAppend').append(

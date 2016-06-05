@@ -7,7 +7,7 @@ var ApiarFactory = function()
         actions: {
             addAp: function() {
                 if (addAppService.isValidated()) {
-                    $.post('http://localhost:9000/addAp/', AddApp).done(function (d) {
+                    $.post('http://194.58.111.34:9000/addAp/', AddApp).done(function (d) {
                         console.log(d);
                         $('.modal').modal('hide');
                         ApiarFactory().actions.getAllApp();
@@ -16,7 +16,7 @@ var ApiarFactory = function()
             },
             changeAp: function() {
                 if (changeAppService.isValidated()) {
-                    $.post('http://localhost:9000/changeAp/', ChangeApp).done(function (d) {
+                    $.post('http://194.58.111.34:9000/changeAp/', ChangeApp).done(function (d) {
                         console.log(d);
                         $('.modal').modal('hide');
                         ApiarFactory().actions.getAllApp();
@@ -24,14 +24,14 @@ var ApiarFactory = function()
                 }
             },
             delApiar: function() {
-                $.post('http://localhost:9000/delAp/', DelApp).done(function (d) {
+                $.post('http://194.58.111.34:9000/delAp/', DelApp).done(function (d) {
                     console.log(d);
                     $('.modal').modal('hide');
                     ApiarFactory().actions.getAllApp();
                 })
             },
             getAllApp: function() {
-                $.get('http://localhost:9000/getAllApp').done(function(d){
+                $.get('http://194.58.111.34:9000/getAllApp').done(function(d){
                     console.log(d);
 
                     $('.TableAppend').html("");
