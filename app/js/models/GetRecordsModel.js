@@ -8,5 +8,5 @@ var updateGetRecords = function(ev){
 
     console.log(ev.getAttribute('data-bind'));
     GetRecords.hive_id = ev.getAttribute('data-bind');
-    JournalFactory().action.getRecords();
+    setTimeout(JournalFactory().action.getRecords(), 10000);
 };
