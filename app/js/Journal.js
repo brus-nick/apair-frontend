@@ -66,7 +66,6 @@ var JournalFactory = function()
                         '</tbody>');
                     $('.modal').modal('hide');
                 });
-                setTimeout(JournalFactory().action.getRecords(), 20000);
             }
         }
     }
